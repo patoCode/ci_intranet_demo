@@ -12,6 +12,8 @@ require_once APPPATH.'controllers/administration/ConfigurationCRUD.php';
 require_once APPPATH.'controllers/administration/CategoryCRUD.php';
 require_once APPPATH.'controllers/administration/GroupCRUD.php';
 require_once APPPATH.'controllers/administration/CalendarCRUD.php';
+require_once APPPATH.'controllers/administration/CalendarEventsCRUD.php';
+
 
 
 class Welcome extends CI_Controller {
@@ -121,7 +123,7 @@ class Welcome extends CI_Controller {
 	}
 	public function calendarEvents($id)
 	{
-		$this->calendar = new CalendarEventsCRUD("Eventos",false, true);
+		$this->calendar = new CalendarEventsCRUD("Eventos",false, true, $id);
 		try {
 
 			$_output = $this->calendar->getCRUD();

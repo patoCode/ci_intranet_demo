@@ -11,8 +11,6 @@ class BaseCrud
 	private $username;
 
 	function __construct($subject = "Sin Titulo", $table = "", $idField = "", $showDeleteRows = true, $softDelete = true){
-		$this->table   = $table;
-		$this->idField = $idField;
 
 		$this->crud    = new grocery_CRUD();
 		$this->crud->set_subject($subject);
@@ -119,6 +117,10 @@ class BaseCrud
 		$this->crud->field_type("id_site", 'hidden', $value);
 	}
 	//
+	public function addHiddenInput($name = "", $value = 0)
+	{
+		$this->crud->field_type($name, 'hidden', $value);
+	}
 	public function getCrud()
 	{
 		return $this->crud;

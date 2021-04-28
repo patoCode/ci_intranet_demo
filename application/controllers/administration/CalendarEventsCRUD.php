@@ -4,23 +4,24 @@ require_once APPPATH.'controllers/administration/BaseCrud.php';
 class CalendarEventsCRUD
 {
 	private $crud;
-	private $showColumns   = ['id_site', 'name', 'description', 'color','short_key','mail_notification','status'];
-	private $createColumns = ['id_site', 'name', 'description', 'color','short_key','mail_notification','user_created','created_at'];
-	private $editColumns   = ['id_site', 'name', 'description', 'color','short_key','mail_notification','status','user_updated', 'updated_at'];
+	private $showColumns   = ['event','description','start_date','end_date','color','objetive_group','notificaion_mail','uri','short_key','status'];
+	private $createColumns = ['id_calendar','event','description','start_date','end_date','color','objetive_group','notificaion_mail','uri','short_key','user_created','created_at'];
+	private $editColumns   = ['event','description','start_date','end_date','color','objetive_group','notificaion_mail','uri','short_key','status','user_updated', 'updated_at'];
 	private $labels    = array(
-							"name"              =>"Denominacion",
+							"event"             =>"Denominacion",
 							"description"       =>"Descripcion",
-							"short_key"         =>"KEY",
-							"mail_notification" =>"Enviar Notificaiones",
+							"start_date"        =>"Inicio",
+							"end_date"          =>"Fin",
 							"color"             =>"color",
-							"id_site"             =>"Sitio"
+							"objetive_group"    =>"Grupo objetivo",
+							"notification_mail" =>"Enviar Notificaciones",
 						);
-	private $table   = 'calendar';
-	private $idField = 'id_calendar';
+	private $table   = 'event';
+	private $idField = 'id_event';
 	private $subject;
 	private $username;
 
-	function __construct($subject, $showDeleteRows = true, $softDelete = true)
+	function __construct($subject, $showDeleteRows = true, $softDelete = true, $id = 0)
 	{
 		$this->crud = new BaseCrud($subject,$this->table,$this->idField, $showDeleteRows, $softDelete);
 
@@ -30,8 +31,10 @@ class CalendarEventsCRUD
 		$this->crud->setColumns($this->showColumns);
 		$this->crud->setAuditFields("#DEINS");
 		$this->crud->setDisplayFields($this->labels);
-		$this->crud->getSiteSelect();
-		$this->crud->addAction("Ver Eventos",'welcome/calendarEvents', '',true);
+		if($id > 0){
+			$this->crud->addHiddenInput("id_calendar", $id);
+		}
+
 	}
 
 	/*===========================================================================*/
