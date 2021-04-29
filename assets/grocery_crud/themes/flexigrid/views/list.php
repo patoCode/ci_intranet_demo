@@ -38,22 +38,22 @@
 				<div class='tools'>
 					<?php if(!$unset_delete){?>
                     	<a href='<?php echo $row->delete_url?>' title='<?php echo $this->l('list_delete')?> <?php echo $subject?>' class="delete-row btn btn-danger" >
-                    		<i class="fa fa-trash-alt"></i>
+                    		<i class=" icon-star-empty "></i>
                     	</a>
                     <?php }?>
                     <?php if(!$unset_edit){?>
 						<a href='<?php echo $row->edit_url?>' title='<?php echo $this->l('list_edit')?> <?php echo $subject?>' class="edit_button btn btn-warning">
-							<i class="fa fa-edit"></i>
+							<i class=" icon-star-empty "></i>
 						</a>
 					<?php }?>
                     <?php if(!$unset_clone){?>
                         <a href='<?php echo $row->clone_url?>' title='Clone <?php echo $subject?>' class="clone_button btn btn-info">
-							<i class="fa fa-equals"></i>
+							<i class=" icon-star-empty "></i>
                         </a>
                     <?php }?>
 					<?php if(!$unset_read){?>
 						<a href='<?php echo $row->read_url?>' title='<?php echo $this->l('list_view')?> <?php echo $subject?>' class="edit_button btn btn-primary">
-							<i class="fa fa-eye"></i>
+							<i class=" icon-star-empty "></i>
 						</a>
 					<?php }?>
 					<?php

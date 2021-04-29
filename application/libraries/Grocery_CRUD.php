@@ -2060,7 +2060,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 		{
 			if(!empty($field_info->primary_key) && !$this->unset_edit)
 			{
-				return $this->l('insert_success_message')." <a class='go-to-edit-form' href='".$this->getEditUrl($field_info->primary_key)."'>".$this->l('form_edit')." {$this->subject}</a> ";
+				return $this->l('insert_success_message')." <a class='go-to-edit-form btn btn-success' href='".$this->getEditUrl($field_info->primary_key)."'>".$this->l('form_edit')." {$this->subject}</a> ";
 			}
 			else
 			{

@@ -11,21 +11,30 @@ class CompanyCRUD
 	private $table         = 'company';
 	private $idField       = "id_company";
 	private $subject;
+	private $actionLabel = "";
+	private $actionIcon = "";
 	private $username;
 
 	function __construct($subject, $showDeleteRows = true, $softDelete = true)
 	{
 		$this->crud = new BaseCrud($subject,$this->table,$this->idField, $showDeleteRows, $softDelete);
-
 		$this->crud->setShowFields($this->createColumns);
 		$this->crud->setRequiredFields($this->createColumns);
 		$this->crud->setEditFields($this->editColumns);
 		$this->crud->setColumns($this->showColumns);
-		$this->crud->setUploadField('company_logo', 'assets/uploads/files');
+		$this->crud->setUploadField('company_logo', PATH_LOGO);
 		$this->crud->setAuditFields("#DEINS");
 		$this->crud->setDisplayFields($this->labels);
-		$this->crud->addAction("Hola",'welcome/location', '',true);
 
+	}
+	public function setActionStyle($label = "", $icon = "")
+	{
+		$this->actionLabel = $label;
+		$this->actionIcon = $icon;
+		$this->addAction();
+	}
+	private function addAction(){
+		$this->crud->addAction($this->actionLabel, 'dashboard/location', $this->actionIcon,true);
 	}
 
 	/*===========================================================================*/
@@ -33,6 +42,7 @@ class CompanyCRUD
 	/*===========================================================================*/
 	public function getCRUD()
 	{
+		$this->addAction();
 		return $this->crud->getRender();
 	}
 

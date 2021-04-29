@@ -14,8 +14,7 @@ class CalendarEventsCRUD
 							"end_date"          =>"Fin",
 							"color"             =>"color",
 							"objetive_group"    =>"Grupo objetivo",
-							"notification_mail" =>"Enviar Notificaciones",
-						);
+							"notification_mail" =>"Enviar Notificaciones",						);
 	private $table   = 'event';
 	private $idField = 'id_event';
 	private $subject;

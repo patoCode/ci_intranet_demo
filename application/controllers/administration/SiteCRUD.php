@@ -7,9 +7,16 @@ class SiteCRUD
 	private $showColumns   = ['id_company','name','slogan','main_logo','code','short_key','status'];
 	private $createColumns = ['id_company','name','slogan','main_logo','code','short_key','user_created','created_at'];
 	private $editColumns   = ['id_company','name','slogan','main_logo','code','status','user_updated', 'updated_at'];
-	private $labels    = array("id_company"=>"Empresa","namme"=>"Sitio","slogan"=>"Frase","main_logo"=>"Logo");
+	private $labels        = array(
+								"id_company" =>"Empresa",
+								"namme"      =>"Sitio",
+								"slogan"     =>"Frase",
+								"main_logo"  =>"Logo"
+							);
 	private $table         = 'site';
 	private $idField       = "id_site";
+	private $actionLabel   = "";
+	private $actionIcon    = "";
 	private $subject;
 	private $username;
 
@@ -24,8 +31,16 @@ class SiteCRUD
 		$this->crud->setAuditFields("#DEINS");
 		$this->crud->setDisplayFields($this->labels);
 		$this->crud->getCompanySelect();
-		$this->crud->addAction("Config",'welcome/config', '',true);
 
+	}
+	public function setActionStyle($label = "", $icon = "")
+	{
+		$this->actionLabel = $label;
+		$this->actionIcon = $icon;
+		$this->addAction();
+	}
+	private function addAction(){
+		$this->crud->addAction($this->actionLabel,'dashboard/configuration', $this->actionIcon,true);
 	}
 
 	/*===========================================================================*/
@@ -33,6 +48,8 @@ class SiteCRUD
 	/*===========================================================================*/
 	public function getCRUD()
 	{
+		$this->addAction();
+
 		return $this->crud->getRender();
 	}
 }

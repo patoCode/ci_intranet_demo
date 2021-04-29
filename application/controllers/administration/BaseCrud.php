@@ -94,10 +94,11 @@ class BaseCrud
 		$this->crud->set_relation('id_category','category',$show, array('category.status' => 'activo','category.is_delete' => 'vigente'));
 	}
 	public function addAction($label = "Default Text", $route = "", $icon= "",$showText = false){
+		$icon = $icon!=""?$icon:'icon-cog';
 		if($showText)
-			$this->crud->add_action($label, $label, $route, $icon);
-		else
 			$this->crud->add_action($label, '', $route, $icon);
+		else
+			$this->crud->add_action('','', $route, $icon);
 	}
 	// TODO Refactorizar estos metodos
 	public function whereCompany($id)

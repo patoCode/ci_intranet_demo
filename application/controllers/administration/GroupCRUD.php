@@ -27,11 +27,8 @@ class GroupCRUD
 		$this->crud->setRequiredFields($this->createColumns);
 		$this->crud->setEditFields($this->editColumns);
 		$this->crud->setColumns($this->showColumns);
-		$this->crud->setUploadField('company_logo', 'assets/uploads/files');
 		$this->crud->setAuditFields("#DEINS");
 		$this->crud->setDisplayFields($this->labels);
-		$this->crud->addAction("Agregar Usuario",'welcome/groupUsuario', '',true);
-
 	}
 
 	/*===========================================================================*/

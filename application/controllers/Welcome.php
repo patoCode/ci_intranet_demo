@@ -136,7 +136,7 @@ class Welcome extends CI_Controller {
 
 	private function _render_view($output = null)
 	{
-		$this->load->view('example',(array)$output);
+		$this->load->view('Administration/base',(array)$output);
 	}
 
 }

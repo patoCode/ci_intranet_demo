@@ -20,8 +20,8 @@
 
 	/** Jquery UI */
 	$this->load_js_jqueryui();
-
 ?>
+
 <script type='text/javascript'>
 	var base_url = '<?php echo base_url();?>';
 
@@ -29,77 +29,101 @@
 	var ajax_list_info_url = '<?php echo $ajax_list_info_url; ?>';
 	var unique_hash = '<?php echo $unique_hash; ?>';
 	var export_url = '<?php echo $export_url; ?>';
-
 	var message_alert_delete = "<?php echo $this->l('alert_delete'); ?>";
-
 </script>
-<div id='list-report-error' class='report-div error'></div>
-<div id='list-report-success' class='report-div success report-list' <?php if($success_message !== null){?>style="display:block"<?php }?>><?php
-if($success_message !== null){?>
-	<p><?php echo $success_message; ?></p>
-<?php }
-?></div>
-<div class="flexigrid" style='width: 100%;' data-unique-hash="<?php echo $unique_hash; ?>">
-	<div id="hidden-operations" class="hidden-operations"></div>
+<div class="col-md-12">
+	<div id='list-report-error' class='report-div error'></div>
 
+	<?php if($success_message !== null):?>
+		<div id='list-report-success' class='alert alert-success'>
+			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<?php echo $success_message; ?>
+		</div>
+	<?php endif; //if($success_message !== null)?>
+</div>
+
+
+<div class="col-md-12">
+	<div class="module-option clearfix">
+
+	</div>
+
+</div>
+
+<div class="flexigrid" data-unique-hash="<?php echo $unique_hash; ?>">
+	<div id="hidden-operations" class="hidden-operations"></div>
 	<div id='main-table-box' class="main-table-box">
 
-	<?php if(!$unset_add || !$unset_export || !$unset_print){?>
-	<div class="text-light bg-secondary p-2 mb-2">
-		<?php if(!$unset_add){?>
-        	<a href='<?php echo $add_url?>' title='<?php echo $this->l('list_add'); ?> <?php echo $subject?>' class='btn btn-success btn-sm'>
-				<i class="fa fa-plus-circle"></i>
-					<?php echo $this->l('list_add'); ?> <?php echo $subject?>
+	<?php if(!$unset_add || !$unset_export || !$unset_print): ?>
 
+	<div class="tDiv">
+		<?php if(!$unset_add){?>
+		<div class="tDiv2">
+        	<a href='<?php echo $add_url?>' title='<?php echo $this->l('list_add'); ?> <?php echo $subject?>' class='add-anchor add_button'>
+			<div class="fbutton">
+				<div>
+					<span class="add"><?php echo $this->l('list_add'); ?> <?php echo $subject?></span>
+				</div>
+			</div>
             </a>
+			<div class="btnseparator">
+			</div>
+		</div>
 		<?php }?>
 		<div class="tDiv3">
 			<?php if(!$unset_export) { ?>
-        	<a class="btn btn-info btn-sm" href="<?php echo $export_url; ?>" download>
-				<i class="fa fa-file-excel"></i>
-				<span class="export"><?php echo $this->l('list_export');?></span>
-
+        	<a class="export-anchor" href="<?php echo $export_url; ?>" download>
+				<div class="fbutton">
+					<div>
+						<span class="export"><?php echo $this->l('list_export');?></span>
+					</div>
+				</div>
             </a>
+			<div class="btnseparator"></div>
 			<?php } ?>
 			<?php if(!$unset_print) { ?>
-        	<a class="btn btn-info btn-sm" data-url="<?php echo $print_url; ?>">
-        		<i class="fa fa-print"></i>
+        	<a class="print-anchor" data-url="<?php echo $print_url; ?>">
+				<div class="fbutton">
+					<div>
 						<span class="print"><?php echo $this->l('list_print');?></span>
-
+					</div>
+				</div>
             </a>
-
+			<div class="btnseparator"></div>
 			<?php }?>
 		</div>
-
+		<div class='clear'></div>
 	</div>
-	<?php }?>
+
+	<?php endif; //if(!$unset_add || !$unset_export || !$unset_print) ?>
+
 
 	<div id='ajax_list' class="ajax_list">
 		<?php echo $list_view?>
 	</div>
-	<div class="row">
-		<?php echo form_open( $ajax_list_url, 'method="post" id="filtering_form" class="filtering_form form-inline col-md-12" autocomplete = "off" data-ajax-list-info-url="'.$ajax_list_info_url.'"'); ?>
-		<div class="col-md-12" id='quickSearchBox'>
-			<label for="list" class="form-control">
-				<?php echo $this->l('list_search');?>:
-			</label>
-			<input type="text" class="qsbsearch_fieldox search_text form-control" name="search_text" size="30" id='search_text'>
-			<select name="search_field" id="search_field" class="custom-select my-1 mr-sm-22">
+	<?php echo form_open( $ajax_list_url, 'method="post" id="filtering_form" class="filtering_form" autocomplete = "off" data-ajax-list-info-url="'.$ajax_list_info_url.'"'); ?>
+	<div class="sDiv quickSearchBox" id='quickSearchBox'>
+		<div class="sDiv2">
+			<?php echo $this->l('list_search');?>: <input type="text" class="qsbsearch_fieldox search_text" name="search_text" size="30" id='search_text'>
+			<select name="search_field" id="search_field">
 				<option value=""><?php echo $this->l('list_search_all');?></option>
 				<?php foreach($columns as $column){?>
 				<option value="<?php echo $column->field_name?>"><?php echo $column->display_as?>&nbsp;&nbsp;</option>
 				<?php }?>
 			</select>
-            <input type="button" value="<?php echo $this->l('list_search');?>" class="crud_search btn btn-primary" id='crud_search'>
-            <input type="button" value="<?php echo $this->l('list_clear_filtering');?>" id='search_clear' class="search_clear btn btn-danger">
+            <input type="button" value="<?php echo $this->l('list_search');?>" class="crud_search" id='crud_search'>
 		</div>
-		<div class="pDiv col-md-12 bg-white align-baseline">
+        <div class='search-div-clear-button'>
+        	<input type="button" value="<?php echo $this->l('list_clear_filtering');?>" id='search_clear' class="search_clear">
+        </div>
+	</div>
+	<div class="pDiv">
 		<div class="pDiv2">
 			<div class="pGroup">
 				<span class="pcontrol">
 					<?php list($show_lang_string, $entries_lang_string) = explode('{paging}', $this->l('list_show_entries')); ?>
 					<?php echo $show_lang_string; ?>
-					<select name="per_page" id='per_page' class="per_page custom-select my-1 mr-sm-22">
+					<select name="per_page" id='per_page' class="per_page">
 						<?php foreach($paging_options as $option){?>
 							<option value="<?php echo $option; ?>" <?php if($option == $default_per_page){?>selected="selected"<?php }?>><?php echo $option; ?>&nbsp;&nbsp;</option>
 						<?php }?>
@@ -157,10 +181,9 @@ if($success_message !== null){?>
 				</span>
 			</div>
 		</div>
-
+		<div style="clear: both;">
+		</div>
 	</div>
 	<?php echo form_close(); ?>
-	</div>
-
 	</div>
 </div>
