@@ -31,15 +31,16 @@
 	var export_url = '<?php echo $export_url; ?>';
 	var message_alert_delete = "<?php echo $this->l('alert_delete'); ?>";
 </script>
-<div class="col-md-12">
-	<div id='list-report-error' class='report-div error'></div>
-
-	<?php if($success_message !== null):?>
-		<div id='list-report-success' class='alert alert-success'>
-			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<?php echo $success_message; ?>
-		</div>
-	<?php endif; //if($success_message !== null)?>
+<div class="row">
+	<div class="span12 col-md-12">
+		<div id='list-report-error' class='report-div error'></div>
+		<?php if($success_message !== null):?>
+			<div id='list-report-success' class='alert alert-success span12'>
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<?php echo $success_message; ?>
+			</div>
+		<?php endif; //if($success_message !== null)?>
+	</div>
 </div>
 
 <div class="flexigrid" data-unique-hash="<?php echo $unique_hash; ?>">
@@ -96,11 +97,11 @@
 
 
 	<?php
-		echo form_open( $ajax_list_url, 'method="post" id="filtering_form" class="filtering_form" autocomplete = "off" data-ajax-list-info-url="'.$ajax_list_info_url.'"');
+		echo form_open( $ajax_list_url, 'method="post" id="filtering_form" class="filtering_form form" autocomplete = "off" data-ajax-list-info-url="'.$ajax_list_info_url.'"');
 	?>
-
-	<div class="sDiv quickSearchBox" id='quickSearchBox'>
-		<div class="sDiv2">
+<!-- ONE -->
+	<div class="sDiv quickSearchBox span12" id='quickSearchBox'>
+		<div class="sDiv2 span9">
 			<?php echo $this->l('list_search');?>: <input type="text" class="qsbsearch_fieldox search_text" name="search_text" size="30" id='search_text'>
 			<select name="search_field" id="search_field">
 				<option value=""><?php echo $this->l('list_search_all');?></option>
@@ -110,10 +111,13 @@
 			</select>
             <input type="button" value="<?php echo $this->l('list_search');?>" class="crud_search" id='crud_search'>
 		</div>
-        <div class='search-div-clear-button'>
+        <div class='span3'>
         	<input type="button" value="<?php echo $this->l('list_clear_filtering');?>" id='search_clear' class="search_clear">
         </div>
 	</div>
+<!-- END ONE -->
+
+
 	<div class="pDiv">
 		<div class="pDiv2">
 			<div class="pGroup">

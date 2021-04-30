@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller {
 	{
 		$company = new CompanyCRUD("Empresa",true);
 		try {
-			$company->setActionStyle("[+] Direcciones");
+			$company->setActionStyle("Direcciones");
 			$_output = $company->getCRUD();
 
 			$this->_render_view($_output);

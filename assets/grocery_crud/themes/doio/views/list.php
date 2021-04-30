@@ -2,7 +2,7 @@
 	$column_width = (int)(80/count($columns));
 	if(!empty($list)):
 ?>
-<div class="table-responsive" >
+<div class="table-responsive">
 
 		<table class="table table-striped table-condensed" id="flex1">
 
@@ -38,48 +38,30 @@
 					<?php if(!$unset_delete || !$unset_edit || !$unset_read || !empty($actions)): ?>
 					<td>
 						<div class="btn-group">
-							<a class="btn btm-mini btn-info" href="#">
-								<i class="icon-cog"></i> <?php echo $this->l('list_actions') ?>
-							</a>
-							<a class="btn btn-mini btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<?php if(!$unset_read): ?>
-								<li>
-									<a href='<?php echo $row->read_url?>' title='<?php echo $this->l('list_view')?> <?php echo $subject?>' class="edit_button">
-										<i class="icon-eye-open"></i> <?php echo $this->l('list_view')?>
-									</a>
-								</li>
-								<?php endif;?>
-								<?php if(!$unset_edit): ?>
-								<li>
-									<a href='<?php echo $row->edit_url?>' title='<?php echo $this->l('list_edit')?> <?php echo $subject?>' class="edit_button">
-										<i class="icon-pencil"></i> <?php echo $this->l('list_edit')?>
-									</a>
-								</li>
-								<?php endif;?>
-								<?php if(!$unset_delete): ?>
-									<li>
-										<a href='<?php echo $row->delete_url?>' title='<?php echo $this->l('list_delete')?> <?php echo $subject?>' class="delete-row" >
-					            			<i class="icon-trash"></i> <?php echo $this->l('list_delete')?>
-					            		</a>
-									</li>
-				            	<?php endif;?>
-								<?php if(!empty($row->action_urls)): ?>
-									<li class="divider"></li>
-									<?php
-									foreach($row->action_urls as $action_unique_id => $action_url):
-										$action = $actions[$action_unique_id]; ?>
-										<li>
-											<a href="<?php echo $action_url; ?>" class="crud-action" title="<?php echo $action->label?>">
-												<i class="<?php echo $action->css_class; ?>"></i> <?php echo $action->label?>
-											</a>
-										</li>
-									<?php
-									endforeach;
-								endif;?>
-							</ul>
+							<?php if(!$unset_read): ?>
+								<a href='<?php echo $row->read_url?>' title='<?php echo $this->l('list_view')?> <?php echo $subject?>' class="edit_button btn btn-small">
+									<i class="icon-eye-open"></i>
+								</a>
+							<?php endif;?>
+							<?php if(!$unset_edit): ?>
+								<a href='<?php echo $row->edit_url?>' title='<?php echo $this->l('list_edit')?> <?php echo $subject?>' class="edit_button btn btn-small">
+									<i class="icon-pencil"></i>
+								</a>
+							<?php endif;?>
+							<?php if(!$unset_delete): ?>
+								<a href='<?php echo $row->delete_url?>' title='<?php echo $this->l('list_delete')?> <?php echo $subject?>' class="delete-row btn btn-small">
+			            			<i class="icon-trash"></i>
+			            		</a>
+			            	<?php endif;?>
+							<?php if(!empty($row->action_urls)):
+								foreach($row->action_urls as $action_unique_id => $action_url):
+									$action = $actions[$action_unique_id]; ?>
+										<a href="<?php echo $action_url; ?>" class="crud-action btn btn-small" title="<?php echo $action->label?>">
+											<i class="<?php echo $action->css_class; ?>"></i>
+										</a>
+								<?php
+								endforeach;
+							endif;?>
 						</div>
 					</td>
 					<?php endif; //if(!$unset_delete || !$unset_edit || !$unset_read || !empty($actions)) ?>
@@ -89,5 +71,7 @@
 		</table>
 	</div>
 <?php else: //if(!empty($list)) ?>
-	<?php echo $this->l('list_no_items'); ?>
+	<div class="alert alert-warning">
+		<?php echo $this->l('list_no_items'); ?>
+	</div>
 <?php endif; // if(!empty($list))?>
