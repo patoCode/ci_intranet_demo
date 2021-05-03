@@ -36,7 +36,7 @@
       });
 
       // double click to remove
-      $(document).on('dblclick', '#task-container li', function() {
+      $(document).on('dblclick', 'li', function() {
           $(this).remove();
       });
 

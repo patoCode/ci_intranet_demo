@@ -1,6 +1,5 @@
 <?php
 
-	$this->set_css($this->default_theme_path.'/flexigrid/css/flexigrid.css');
     $this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery.form.min.js');
 	$this->set_js_config($this->default_theme_path.'/flexigrid/js/flexigrid-edit.js');
 

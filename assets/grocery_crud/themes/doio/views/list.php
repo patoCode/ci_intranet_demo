@@ -4,7 +4,7 @@
 ?>
 <div class="table-responsive">
 
-		<table class="table table-striped table-condensed" id="flex1">
+		<table class="table table-hover" id="flex1">
 
 			<thead class="text-center">
 				<tr>
