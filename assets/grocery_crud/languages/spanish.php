@@ -83,18 +83,18 @@
 	$lang['ui_year'] = 'yyyy';
 
 	/* Added in version 1.5.2 */
-	$lang['list_more'] = 'Más';
+	$lang['list_more'] = 'Mas';
 
 	/* Added in version 1.5.6 */
-	$lang['list_search_column'] = 'Buscar {column_name}';
+	$lang['list_search_column'] = 'Buscar por {column_name}';
 
 	/* Added in version 1.5.8 */
-	$lang['alert_delete_multiple'] = 'Esta seguro de eliminar {items_amount} registro(s)?';
+	$lang['alert_delete_multiple'] = '¿Estás seguro que deseas eliminar esos {items_amount} elementos?';
 
-	$lang['alert_delete_multiple_one'] = 'Esta seguro de eliminar este registro?';
+	$lang['alert_delete_multiple_one'] = '¿Estás seguro que deseas eliminar ese 1 elemento?';
 
 
 
 	/* Added in version 1.6.1 */
-	$lang['list_clone'] = 'Clonar';
+	$lang['list_clone'] = 'Duplicar';
 

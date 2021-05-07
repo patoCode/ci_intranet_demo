@@ -13,6 +13,9 @@ class BaseCrud
 	function __construct($subject = "Sin Titulo", $table = "", $idField = "", $showDeleteRows = true, $softDelete = true){
 
 		$this->crud    = new grocery_CRUD();
+		$this->crud->unset_jquery();
+		$this->crud->unset_export();
+		$this->crud->unset_print();
 		$this->crud->set_subject($subject);
 		$this->crud->set_table($table);
 		if(!$showDeleteRows)

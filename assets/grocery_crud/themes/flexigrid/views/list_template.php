@@ -20,8 +20,8 @@
 
 	/** Jquery UI */
 	$this->load_js_jqueryui();
-?>
 
+?>
 <script type='text/javascript'>
 	var base_url = '<?php echo base_url();?>';
 
@@ -29,33 +29,29 @@
 	var ajax_list_info_url = '<?php echo $ajax_list_info_url; ?>';
 	var unique_hash = '<?php echo $unique_hash; ?>';
 	var export_url = '<?php echo $export_url; ?>';
+
 	var message_alert_delete = "<?php echo $this->l('alert_delete'); ?>";
+
 </script>
-<div class="col-md-12">
-	<div id='list-report-error' class='report-div error'></div>
-
-	<?php if($success_message !== null):?>
-		<div id='list-report-success' class='alert alert-success'>
-			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<?php echo $success_message; ?>
-		</div>
-	<?php endif; //if($success_message !== null)?>
-</div>
-
-
-<div class="col-md-12">
-	<div class="module-option clearfix">
-
-	</div>
-
-</div>
-
-<div class="flexigrid" data-unique-hash="<?php echo $unique_hash; ?>">
+<div id='list-report-error' class='report-div error'></div>
+<div id='list-report-success' class='report-div success report-list' <?php if($success_message !== null){?>style="display:block"<?php }?>><?php
+if($success_message !== null){?>
+	<p><?php echo $success_message; ?></p>
+<?php }
+?></div>
+<div class="flexigrid" style='width: 100%;' data-unique-hash="<?php echo $unique_hash; ?>">
 	<div id="hidden-operations" class="hidden-operations"></div>
+	<div class="mDiv">
+		<div class="ftitle">
+			&nbsp;
+		</div>
+		<div title="<?php echo $this->l('minimize_maximize');?>" class="ptogtitle">
+			<span></span>
+		</div>
+	</div>
 	<div id='main-table-box' class="main-table-box">
 
-	<?php if(!$unset_add || !$unset_export || !$unset_print): ?>
-
+	<?php if(!$unset_add || !$unset_export || !$unset_print){?>
 	<div class="tDiv">
 		<?php if(!$unset_add){?>
 		<div class="tDiv2">
@@ -94,9 +90,7 @@
 		</div>
 		<div class='clear'></div>
 	</div>
-
-	<?php endif; //if(!$unset_add || !$unset_export || !$unset_print) ?>
-
+	<?php }?>
 
 	<div id='ajax_list' class="ajax_list">
 		<?php echo $list_view?>

@@ -1,27 +1,26 @@
 <?php
+
+	$this->set_css($this->default_theme_path.'/datatables/css/datatables.css');
 	$this->set_js_lib($this->default_theme_path.'/flexigrid/js/jquery.form.js');
-	$this->set_js_config($this->default_theme_path.'/flexigrid/js/flexigrid-edit.js');
+	$this->set_js_config($this->default_theme_path.'/datatables/js/datatables-edit.js');
+	$this->set_css($this->default_css_path.'/ui/simple/'.grocery_CRUD::JQUERY_UI_CSS);
+	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/ui/'.grocery_CRUD::JQUERY_UI_JS);
 
 	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery.noty.js');
 	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/config/jquery.noty.config.js');
 ?>
-<div class="flexigrid crud-form card" style='width: 100%;' data-unique-hash="<?php echo $unique_hash; ?>">
-	<div class="mDiv">
-		<div class="ftitle">
-			<div class='ftitle-left'>
-				<?php echo $this->l('list_record'); ?> <?php echo $subject?>
-			</div>
-			<div class='clear'></div>
+<div class='ui-widget-content ui-corner-all datatables'>
+	<h3 class="ui-accordion-header ui-helper-reset ui-state-default form-title">
+		<div class='floatL form-title-left'>
+			<a href="#"><?php echo $this->l('list_record'); ?> <?php echo $subject?></a>
 		</div>
-		<div title="<?php echo $this->l('minimize_maximize');?>" class="ptogtitle">
-			<span></span>
-		</div>
-	</div>
-<div id='main-table-box'>
+		<div class='clear'></div>
+	</h3>
+<div class='form-content form-div'>
 	<?php echo form_open( $read_url, 'method="post" id="crudForm"  enctype="multipart/form-data"'); ?>
-	<div class='form-div'>
+		<div>
 		<?php
-		$counter = 0;
+			$counter = 0;
 			foreach($fields as $field)
 			{
 				$even_odd = $counter % 2 == 0 ? 'odd' : 'even';
@@ -37,29 +36,25 @@
 				<div class='clear'></div>
 			</div>
 		<?php }?>
-		<?php if(!empty($hidden_fields)){?>
-		<!-- Start of hidden inputs -->
-			<?php
-				foreach($hidden_fields as $hidden_field){
-					echo $hidden_field->input;
-				}
-			?>
-		<!-- End of hidden inputs -->
-		<?php }?>
-		<?php if ($is_ajax) { ?><input type="hidden" name="is_ajax" value="true" /><?php }?>
-		<div id='report-error' class='report-div error'></div>
-		<div id='report-success' class='report-div success'></div>
-	</div>
-	<div class="pDiv">
-		<div class='form-button-box'>
-			<input type='button' value='<?php echo $this->l('form_back_to_list'); ?>' class="btn btn-large back-to-list" id="cancel-button" />
+			<!-- Start of hidden inputs -->
+				<?php
+					foreach($hidden_fields as $hidden_field){
+						echo $hidden_field->input;
+					}
+				?>
+			<!-- End of hidden inputs -->
+			<?php if ($is_ajax) { ?><input type="hidden" name="is_ajax" value="true" /><?php }?>
+			<div class='line-1px'></div>
+			<div id='report-error' class='report-div error'></div>
+			<div id='report-success' class='report-div success'></div>
 		</div>
-		<div class='form-button-box'>
-			<div class='small-loading' id='FormLoading'><?php echo $this->l('form_update_loading'); ?></div>
+		<div class='buttons-box'>
+			<div class='form-button-box'>
+				<input type='button' value='<?php echo $this->l('form_back_to_list'); ?>' class='ui-input-button back-to-list' id="cancel-button" />
+			</div>
+			<div class='clear'></div>
 		</div>
-		<div class='clear'></div>
-	</div>
-	<?php echo form_close(); ?>
+	</form>
 </div>
 </div>
 <script>

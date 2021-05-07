@@ -307,13 +307,12 @@ table th
 .flexigrid div.form-div input[type=text], .flexigrid div.form-div input[type=password]
 {
 	font-size: 15px;
-	height:auto;
+	height:20px;
 	border: 1px solid #AAA;
 	padding: 5px 5px 5px 5px;
 }
 .flexigrid input[type=text].form-control {
 	width: 500px;
-	padding: 2px;
 }
 .flexigrid div.form-div textarea
 {
@@ -460,12 +459,10 @@ div.colCopy {
 	background:#fff !important;
 }
 .flexigrid table tr.hDiv th div.desc {
-	background:url(images/dn.png) no-repeat center bottom;
-	border-bottom: 4px solid cyan;
+	background:url(images/dn.png) no-repeat center top;
 }
 .flexigrid table tr.hDiv th div.asc {
-	background:url(images/up.png) no-repeat center bottom;
-	border-bottom: 4px solid tan;
+	background:url(images/up.png) no-repeat center top;
 }
 .flexigrid div.bDiv td {
 	border-bottom:1px solid #fff;
@@ -566,12 +563,12 @@ div.colCopy {
 	margin:3px;
 	margin-left:-2px;
 	float:left;
-	width:100%;
+	width:1024px;
 }
 div.pGroup {
 	float:left;
 	background:none;
-	height:auto;
+	height:24px;
 	margin:0px 5px;
 }
 .flexigrid div.pDiv .pPageStat,.flexigrid div.pDiv .pcontrol {
@@ -807,7 +804,7 @@ div.flexigrid .ftitle a
 	color: blue;
 	text-decoration: none;
 }
-/*div.flexigrid .ftitle a:hover
+div.flexigrid .ftitle a:hover
 {
 	text-decoration: underline;
 }
@@ -819,7 +816,7 @@ div.flexigrid a
 div.flexigrid a:hover
 {
 	text-decoration: underline;
-}*/
+}
 .small-loading
 {
 	background: url('images/load.gif') no-repeat;
@@ -865,7 +862,7 @@ textarea.texteditor, textarea.mini-texteditor
 .flexigrid div.form-div input[type=text]:focus,.flexigrid div.form-div textarea:focus{outline:0;border-color:rgba(82, 168, 236, 0.8);-webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(82, 168, 236, 0.6);-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(82, 168, 236, 0.6);box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(82, 168, 236, 0.6);}
 
 /* Some beautiful twitter bootstrap buttons */
-/*.flexigrid .btn {
+.flexigrid .btn {
   display: inline-block;
   *display: inline;
   padding: 4px 10px 4px;
@@ -927,6 +924,8 @@ textarea.texteditor, textarea.mini-texteditor
 	text-decoration: none;
 	background-color: #e6e6e6;
 	*background-color: #d9d9d9;
+	/* Buttons in IE7 don't get borders, so darken on hover */
+
 	background-position: 0 -15px;
 	-webkit-transition: background-position 0.1s linear;
 	-moz-transition: background-position 0.1s linear;
@@ -991,8 +990,8 @@ textarea.texteditor, textarea.mini-texteditor
 	padding: 2px 6px;
 	font-size: 11px;
 	line-height: 14px;
-}*/
-/*
+}
+
 .flexigrid .btn-primary,
 .flexigrid .btn-primary:hover,
 .flexigrid .btn-warning,
@@ -1201,7 +1200,7 @@ textarea.texteditor, textarea.mini-texteditor
 .flexigrid .btn-inverse:active,
 .flexigrid .btn-inverse.active {
 	background-color: #080808 \9;
-}*/
+}
 
 button.btn,
 input[type="submit"].btn {

@@ -14,6 +14,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="author" content="ET" />
+
+      <!-- GC -->
+      <?php foreach($css_files as $file): ?>
+        <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+      <?php endforeach; ?>
+      <!-- END GC -->
+
       <!-- Favicon icon -->
       <link rel="icon" href="<?php echo base_url(); ?>public/admin/assets/images/favicon.ico" type="image/x-icon">
       <!-- Google font-->     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
@@ -39,15 +46,6 @@
     <!-- Pre-loader start -->
     <?php $this->load->view('administration/loader'); ?>
     <!-- Pre-loader end -->
-
-    <?php
-            if(isset($css_files)):
-                foreach($css_files as $file):
-        ?>
-          <pre> <?php echo $file ?> </pre>
-        <?php   endforeach;
-            endif;
-        ?>
 
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
@@ -138,6 +136,7 @@
     <![endif]-->
     <!-- Warning Section Ends -->
     <!-- Required Jquery -->
+
     <script type="text/javascript" src="<?php echo base_url(); ?>public/admin/assets/js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>public/admin/assets/js/jquery-ui/jquery-ui.min.js "></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>public/admin/assets/js/popper.js/popper.min.js"></script>
@@ -153,6 +152,11 @@
     <script src="<?php echo base_url(); ?>public/admin/assets/js/vertical-layout.min.js "></script>
     <script src="<?php echo base_url(); ?>public/admin/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>public/admin/assets/js/script.js"></script>
+        <!-- GC JS -->
+    <?php foreach($js_files as $file): ?>
+        <script src="<?php echo $file; ?>"></script>
+    <?php endforeach; ?>
+    <!-- END GC JS -->
 
 </body>
 
