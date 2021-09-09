@@ -28,16 +28,18 @@ class Intranet extends CI_Controller {
 			$user_valid = $this->user->checkLogin($username, $password);
 			if($user_valid != null){
 				$data_user['user'] = $user_valid;
-
 				$actions = $this->user->getActions($user_valid->id_user);
 				if($actions != null){
+
 					$data_user['actions'] = $actions;
 				}
 				$this->session->set_userdata($data_user);
-				$visibility = $this->visibilityUser($this->user->rolsVisibility($user_valid->id_user));
 
+				$visibility = $this->visibilityUser($this->user->rolsVisibility($user_valid->id_user));
 				if($visibility)
 				{
+					//$data_user['visibility'] = $visibility;
+
 					redirect('Dashboard/home','refresh');
 				}
 				else
@@ -53,6 +55,11 @@ class Intranet extends CI_Controller {
 			$this->index();
 		}
 
+	}
+	public function logout()
+	{
+		session_destroy();
+		redirect('Intranet','refresh');
 	}
 	/**
 	 * [visibilityUser description]

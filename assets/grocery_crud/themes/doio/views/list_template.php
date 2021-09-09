@@ -117,9 +117,16 @@
 </style>
 <div class="container-fluid">
 	<!-- MESSAGES -->
-	<div id='list-report-error' class='report-div error report-list background-red'></div>
-	<div id='list-report-success' class='report-div success report-list background-success' <?php if($success_message !== null){?>style="display:block"<?php }?>>
-		<?php if($success_message !== null) echo $success_message; ?>
+	<div id='list-report-error' class='report-div error report-list'>
+	</div>
+
+	<div id='list-report-success' class='report-div success report-list background-success'
+		<?php if($success_message !== null): ?>style="display:block"<?php endif;?>>
+			<?php if($success_message !== null): ?>
+				<div class="alert alert-success">
+					<?php echo $success_message;?>
+				</div>
+			<?php endif;?>
 	</div>
 	<!-- MESSAGES -->
 

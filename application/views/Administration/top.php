@@ -86,7 +86,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="user-profile header-notification">
+                <!-- <li class="user-profile header-notification">
                     <a href="#!" class="waves-effect waves-light">
                         <img src="<?php echo base_url(); ?>public/admin/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                         <span>John Doe</span>
@@ -119,7 +119,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

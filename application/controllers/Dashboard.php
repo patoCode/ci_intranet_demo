@@ -11,6 +11,10 @@ require_once APPPATH.'controllers/administration/CategoryCRUD.php';
 require_once APPPATH.'controllers/administration/GroupCRUD.php';
 require_once APPPATH.'controllers/administration/CalendarCRUD.php';
 require_once APPPATH.'controllers/administration/CalendarEventsCRUD.php';
+require_once APPPATH.'controllers/administration/RolCRUD.php';
+require_once APPPATH.'controllers/administration/ActionCRUD.php';
+require_once APPPATH.'controllers/administration/UserCRUD.php';
+require_once APPPATH.'controllers/administration/PeopleCRUD.php';
 
 
 class Dashboard extends CI_Controller {
@@ -24,7 +28,7 @@ class Dashboard extends CI_Controller {
 
 	public function home()
 	{
-
+		redirect('Dashboard/company','refresh');
 	}
 	/**
 	 * @return [type]
@@ -125,6 +129,47 @@ class Dashboard extends CI_Controller {
 		$group = new GroupCRUD("Grupos",false, true);
 		try {
 			$_output = $group->getCRUD();
+			$this->_render_view($_output);
+		} catch (Exception $e) {
+			show_error($e->getMessage().' --- '.$e->getTraceAsString());
+		}
+	}
+	public function rols()
+	{
+		$rol = new RolCRUD("Roles",false, true);
+		try {
+			$_output = $rol->getCRUD();
+			$this->_render_view($_output);
+		} catch (Exception $e) {
+			show_error($e->getMessage().' --- '.$e->getTraceAsString());
+		}
+	}
+	public function actions()
+	{
+		$action = new ActionCRUD("Acciones",false, true);
+		try {
+			$_output = $action->getCRUD();
+			$this->_render_view($_output);
+		} catch (Exception $e) {
+			show_error($e->getMessage().' --- '.$e->getTraceAsString());
+		}
+	}
+
+	public function user()
+	{
+		$user = new UserCRUD("Usuarios",false, true);
+		try {
+			$_output = $user->getCRUD();
+			$this->_render_view($_output);
+		} catch (Exception $e) {
+			show_error($e->getMessage().' --- '.$e->getTraceAsString());
+		}
+	}
+	public function people()
+	{
+		$people = new PeopleCRUD("Personas",false, true);
+		try {
+			$_output = $people->getCRUD();
 			$this->_render_view($_output);
 		} catch (Exception $e) {
 			show_error($e->getMessage().' --- '.$e->getTraceAsString());

@@ -116,6 +116,10 @@ class BaseCrud
 	{
 		$this->crud->where('id_site',$id);
 	}
+	public function whereRol($id)
+	{
+		$this->crud->where('id_rol',$id);
+	}
 	public function inputHiddenSite($value)
 	{
 		$this->crud->field_type("id_site", 'hidden', $value);
@@ -124,6 +128,14 @@ class BaseCrud
 	public function addHiddenInput($name = "", $value = 0)
 	{
 		$this->crud->field_type($name, 'hidden', $value);
+	}
+	public function setRelationN_toN($fieldname, $tableRelation, $otherTable, $idRelation, $idFinalTable, $nameField)
+	{
+		$this->crud->set_relation_n_n($fieldname, $tableRelation, $otherTable, $idRelation, $idFinalTable, $nameField);
+	}
+	public function setSimpleRelation()
+	{
+		$this->crud->set_relation('id_people','people','{name} {pat_surename} {mat_surename}', array('is_delete' => CURRENT_STATUS));
 	}
 	public function getCrud()
 	{

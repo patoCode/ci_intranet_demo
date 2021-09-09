@@ -11,11 +11,11 @@ class User_model extends CI_Model
         if($query->num_rows() >= 1)
         {
             $login = $query->row();
+            $this->db->select('CONCAT(p.name," ",p.pat_surename," ", mat_surename) as fullname, u.id_user as id_user, p.name as peopleName, p.pat_surename as apPat, p.mat_surename as apMat, p.birthday as cumpleanio, p.ci as ci, p.phone as phone, p.mobile as mobile, p.personal_email, u.username as user, COALESCE(u.photo,"user_default.png") as photo, u.email,u.location, u.ip_phone, u.work_position, u.manager, u.ldap, u.notifications_active, s.name as site, s.slogan, s.code, s.main_logo,s.short_key, c.name as company, c.initials, c.description, c.company_logo, c.code as company_code, c.short_key as skCompany');
             $this->db->from('user u');
-            $this->db->join('people', 'people.id_people = u.id_user', 'left');
-            $this->db->join('site', 'site.id_site = u.id_site', 'left');
-            $this->db->join('company', 'company.id_company = site.id_company', 'left');
-
+            $this->db->join('people p', 'p.id_people = u.id_user', 'left');
+            $this->db->join('site s', 's.id_site = u.id_site', 'left');
+            $this->db->join('company c', 'c.id_company = s.id_company', 'left');
             $this->db->where('password ', $pass);
 
             // if( strtolower($login->ldap) == "activo" )
@@ -40,7 +40,9 @@ class User_model extends CI_Model
             // }
 
             $this->db->where('username = ', $user);
-            $this->db->where('u.status = ', 'activo');
+            $this->db->where('u.status = ', STATUS_ACTIVE);
+            $this->db->where('u.is_delete', CURRENT_STATUS);
+            $this->db->where('p.is_delete', CURRENT_STATUS);
             $this->db->limit(1);
             $query = $this->db->get();
             return $query->row();
@@ -70,7 +72,7 @@ class User_model extends CI_Model
         JOIN action a on a.id_action = ra.id_action
         WHERE ur.id_user = 1
         */
-        $this->db->select('r.name, r.description, a.name as actionName, a.description as actionDes, a.uri as actionUri, a.icon');
+        $this->db->select('r.name, r.description, a.name as actionName, a.description as actionDes, a.uri as actionUri, a.icon, a.id_action');
         $this->db->from('user_rol ur');
         $this->db->join('rol r', 'r.id_rol = ur.id_rol', 'left');
         $this->db->join('rol_action ra', 'ra.id_rol = r.id_rol', 'left');
@@ -81,6 +83,7 @@ class User_model extends CI_Model
         $this->db->where('r.is_delete', CURRENT_STATUS);
         $this->db->where('a.status', STATUS_ACTIVE);
         $this->db->where('a.is_delete', CURRENT_STATUS);
+        $this->db->group_by('a.id_action');
         $query = $this->db->get();
         if($query->num_rows() >= 1){
             return $query->result();
